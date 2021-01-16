@@ -37,7 +37,7 @@ The files in your project can be seen by Git in following states:
 
 ## What does commit mean?
 
-![Git file life cycle](./images/git-file-lifecycle.png)
+![Git file life cycle](./images/git/git-file-lifecycle.png)
 
 The above image describes the flow between the different states of the file through its life cycle as seen by Git. The act of committing a file in Git means that the developer wants to lock in their changes to the git local repository in the form of a git commit. This commit holds information on what changes were included in the commit, when the commit was made (a timestamp), who made the change, a commit message, and a unique commit identifier known as a commit hash.
 
@@ -49,7 +49,7 @@ Phew, now that we got the very important theoretical understanding of Git covere
 
 Download Git on your system [here](https://git-scm.com/downloads). Make sure you can use it via your command line on Linux, Windows, or MacOS. On Windows, I would recommend to [use WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10), specifically WSL version 2 if possible. On WSL 2, I would also recommend using Ubuntu 20.04 as your choice of Linux Distribution, as it comes with Git pre-installed.
 
-![Git work flow](./images/git-workflow.png)
+![Git work flow](./images/git/git-workflow.png)
 
 The best way I can help you understand the git commands is to describe a sample example of a developer (i.e., you) creating a Git repository and working with another developer who uses the same repository.
 
