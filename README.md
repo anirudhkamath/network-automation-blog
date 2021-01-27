@@ -1,5 +1,9 @@
-# network-automation-blog
-A collection of guides and exercises on tools and platforms used in the area of network automation and programmability.
+# Welcome to my blog!
+
+Hello, my name is Anirudh Kamath. I am a Network Automation engineer, who enjoys spreading knowledge about matters I am passionate about. One of these matters is software tools that help manage computer infrastructure efficiently.
+
+I am attempting to maintain a collection of posts on technologies used in the area of network automation and programmability.
+Oh, and please do feel free to open pull requests on my GitHub repository in case you want to contribute as well. I am excited to learn together with you!
 
 Contents:
 - [Basics of Git](notes/git.md)
