@@ -1,4 +1,4 @@
-This note talks about using a Cisco DevNet sandbox lab to play with a Python library like NAPALM to create basic inventory files that describe network devices.
+This post talks about using a Cisco DevNet sandbox lab to play with a Python library like NAPALM to create basic inventory files that describe network devices.
 
 # DevNet sandbox
 

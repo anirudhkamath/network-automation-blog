@@ -1,4 +1,4 @@
-This note intends to cover basic information around software version control using a tool called Git.
+This post intends to cover basic information around software version control using a tool called Git.
 
 # What is software version control?
 

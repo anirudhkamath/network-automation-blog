@@ -1,4 +1,4 @@
-This note intends to shed light on how to programmatically consume information coming out of network devices.
+This post intends to shed light on how to programmatically consume information coming out of network devices.
 
 # Data/Day-tuh/Dah-tah...?
 
