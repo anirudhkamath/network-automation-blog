@@ -54,134 +54,141 @@ As such, this SDK is really verbose in what it can do. But for my bot, I only wa
 Now that I have outlined the constructs in the SDK that I used to make my bot server application, I can define the steps that would be defined in my `ConversationHandler`:
 
 1. Start: This is the entry point of the bot conversation lifecycle. User provides the primary IP address of the device.
-![Starting conversation with the bot](./images/network-bot-using-telegram/bot-start.jpg)
+
+    ![Starting conversation with the bot](./images/network-bot-using-telegram/bot-start.jpg)
+
 2. Choose: User chooses what information they want from the device.
-![Choosing bot action](./images/network-bot-using-telegram/bot-choose.jpg)
+
+    ![Choosing bot action](./images/network-bot-using-telegram/bot-choose.jpg)
+
 3. Run choice: Whatever is selected by the user, run the process required to get that information and return information back to the user in a chat friendly way.
-![Data returned back from chosen action](./images/network-bot-using-telegram/bot-run-choice.jpg)
+
+    ![Data returned back from chosen action](./images/network-bot-using-telegram/bot-run-choice.jpg)
+
 4. End: Triggered on user command of "Done" or "done". Clear out user data and end conversation.
-![End conversation](./images/network-bot-using-telegram/bot-end.jpg)
+
+    ![End conversation](./images/network-bot-using-telegram/bot-end.jpg)
 
 # A look into the server code itself
 
 Here are snippets of the steps I wrote for my bot actions. Note that here `update` and `context` are variables used in step methods to keep track of user message updates and context variables that describe the context of the conversation, respectively.
 
 1. Start
-```
-def start(update: Update, context: CallbackContext) -> int:
-    """ The start to the conversation """
-    update.message.reply_text(
-        'Hello, I am your network bot. You can talk to me to get information about devices in your network.\n\n'
-        'Send me a "Done" if you want to stop this interaction at any time\n\n'
-        'Please tell me the primary IP address of the device you want to get information about.',
-    )
+    ```
+    def start(update: Update, context: CallbackContext) -> int:
+        """ The start to the conversation """
+        update.message.reply_text(
+            'Hello, I am your network bot. You can talk to me to get information about devices in your network.\n\n'
+            'Send me a "Done" if you want to stop this interaction at any time\n\n'
+            'Please tell me the primary IP address of the device you want to get information about.',
+        )
 
-    return CHOOSE
-```
+        return CHOOSE
+    ```
 
 2. Choose
 
-```
-def choose_option(update: Update, context: CallbackContext) -> int:
-    reply_keyboard = [['Facts', 'Interfaces']]
-    context.user_data['ipaddr'] = update.message.text
-    update.message.reply_text(
-        'Awesome, what do you want to get for this device?',
-        reply_markup= ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
-    )
+    ```
+    def choose_option(update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [['Facts', 'Interfaces']]
+        context.user_data['ipaddr'] = update.message.text
+        update.message.reply_text(
+            'Awesome, what do you want to get for this device?',
+            reply_markup= ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
+        )
 
-    return CHOICE
-```
+        return CHOICE
+    ```
 
 3. Run choice selected
 
-```
-def choice_wrapper(update: Update, context: CallbackContext) -> int:
-    text = update.message.text
-    ip_addr = context.user_data['ipaddr']
-    if text == 'Facts':
-        update.message.reply_text("Please wait while I get general facts about your device...")
-        device_facts = get_device_facts(ip_addr) # uses NAPALM, this is a wrapper around that.
+    ```
+    def choice_wrapper(update: Update, context: CallbackContext) -> int:
+        text = update.message.text
+        ip_addr = context.user_data['ipaddr']
+        if text == 'Facts':
+            update.message.reply_text("Please wait while I get general facts about your device...")
+            device_facts = get_device_facts(ip_addr) # uses NAPALM, this is a wrapper around that.
 
-        if not device_facts:
-            update.message.reply_text("Sorry, this device type is not supported yet.")
+            if not device_facts:
+                update.message.reply_text("Sorry, this device type is not supported yet.")
 
-        else:
-            update.message.reply_text(
-                'Here are your device facts:\n\n'
-                f'This device\'s name is {str(device_facts["hostname"])}, serial number {str(device_facts["serial_number"])}\n'
-                f'It is a {str(device_facts["vendor"])} {str(device_facts["model"])}, running {str(device_facts["os_version"])} \n'
-                f'This device has been up for {str(device_facts["uptime"])}\n\n'
-                f'The list of interfaces on this device:\n\n {str(device_facts["interface_list"])}'
-            )
+            else:
+                update.message.reply_text(
+                    'Here are your device facts:\n\n'
+                    f'This device\'s name is {str(device_facts["hostname"])}, serial number {str(device_facts["serial_number"])}\n'
+                    f'It is a {str(device_facts["vendor"])} {str(device_facts["model"])}, running {str(device_facts["os_version"])} \n'
+                    f'This device has been up for {str(device_facts["uptime"])}\n\n'
+                    f'The list of interfaces on this device:\n\n {str(device_facts["interface_list"])}'
+                )
 
-    if text == 'Interfaces':
-        update.message.reply_text("Please wait while I get information about working interfaces on your device...")
-        device_interfaces = get_device_interfaces(ip_addr) # uses NAPALM, this is a wrapper around that.
+        if text == 'Interfaces':
+            update.message.reply_text("Please wait while I get information about working interfaces on your device...")
+            device_interfaces = get_device_interfaces(ip_addr) # uses NAPALM, this is a wrapper around that.
 
-        if not device_interfaces:
-            update.message.reply_text("Sorry, this device type is not supported yet.")
+            if not device_interfaces:
+                update.message.reply_text("Sorry, this device type is not supported yet.")
 
-        else:
-            update.message.reply_text('Here are facts about your device interfaces:\n\n')
-            
-            for d in device_interfaces:
-                if device_interfaces[d]['is_up'] and device_interfaces[d]['is_enabled']:
-                    update.message.reply_text(
-                        f'About interface {str(d)}:\n\n'
-                        f'It has a burnt in address of {device_interfaces[d]["mac_address"]}'
-                        f'And supports a speed of {device_interfaces[d]["speed"]} Mbps, with an MTU of {device_interfaces[d]["mtu"]}'
-                    )
+            else:
+                update.message.reply_text('Here are facts about your device interfaces:\n\n')
+                
+                for d in device_interfaces:
+                    if device_interfaces[d]['is_up'] and device_interfaces[d]['is_enabled']:
+                        update.message.reply_text(
+                            f'About interface {str(d)}:\n\n'
+                            f'It has a burnt in address of {device_interfaces[d]["mac_address"]}'
+                            f'And supports a speed of {device_interfaces[d]["speed"]} Mbps, with an MTU of {device_interfaces[d]["mtu"]}'
+                        )
 
-    return DONE
-```
+        return DONE
+    ```
 
 4. End
 
-```
-def done(update: Update, context: CallbackContext) -> int:
-    user_data = context.user_data
-    if 'ipaddr' in user_data:
-        del user_data['ipaddr']
+    ```
+    def done(update: Update, context: CallbackContext) -> int:
+        user_data = context.user_data
+        if 'ipaddr' in user_data:
+            del user_data['ipaddr']
 
-    update.message.reply_text(
-        f"Closing the connection to the device. Ciao!"
-    )
+        update.message.reply_text(
+            f"Closing the connection to the device. Ciao!"
+        )
 
-    user_data.clear()
-    return ConversationHandler.END
-```
+        user_data.clear()
+        return ConversationHandler.END
+    ```
 
 And the `main` function that runs the show:
 
-```
-CHOOSE, CHOICE, DONE = range(3) # Three numbered states the chatbot resides at after communication has started.
-def main():
-    updater = Updater("YOUR-TELEGRAM-API-TOKEN", use_context=True) # provides the interface to the bot
-    dispatcher = updater.dispatcher
-    convo_handler = ConversationHandler(
-        entry_points= [CommandHandler('start', start)],
-        states= {
-            CHOOSE: [MessageHandler(Filters.regex("^(\d{1,3}\.){3}\d{1,3}$"), choose_option)],
-            CHOICE: [MessageHandler(Filters.regex('^(Facts|Interfaces)$'), choice_wrapper)],
-            DONE: [MessageHandler(Filters.regex('^[dD]one$'), done)]
-        },
-        fallbacks=[MessageHandler(Filters.regex('^[dD]one$'), done)],
-    )
-    dispatcher.add_handler(convo_handler) # Dispatch the conversation handler object to the bot interface.
+    ```
+    CHOOSE, CHOICE, DONE = range(3) # Three numbered states the chatbot resides at after communication has started.
+    def main():
+        updater = Updater("YOUR-TELEGRAM-API-TOKEN", use_context=True) # provides the interface to the bot
+        dispatcher = updater.dispatcher
+        convo_handler = ConversationHandler(
+            entry_points= [CommandHandler('start', start)],
+            states= {
+                CHOOSE: [MessageHandler(Filters.regex("^(\d{1,3}\.){3}\d{1,3}$"), choose_option)],
+                CHOICE: [MessageHandler(Filters.regex('^(Facts|Interfaces)$'), choice_wrapper)],
+                DONE: [MessageHandler(Filters.regex('^[dD]one$'), done)]
+            },
+            fallbacks=[MessageHandler(Filters.regex('^[dD]one$'), done)],
+        )
+        dispatcher.add_handler(convo_handler) # Dispatch the conversation handler object to the bot interface.
 
-    # Start the Bot
-    updater.start_polling() # Start polling the bot interface to check for any new messages.
+        # Start the Bot
+        updater.start_polling() # Start polling the bot interface to check for any new messages.
 
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
-    updater.idle() # keep bot interfacing till process is stopped...
-```
+        # Run the bot until you press Ctrl-C or the process receives SIGINT,
+        # SIGTERM or SIGABRT. This should be used most of the time, since
+        # start_polling() is non-blocking and will stop the bot gracefully.
+        updater.idle() # keep bot interfacing till process is stopped...
+    ```
 
 And to allow the server application to be run via Python on the command line:
 
-```
-if __name__ == "__main__":
-    main()
-```
+    ```
+    if __name__ == "__main__":
+        main()
+    ```
