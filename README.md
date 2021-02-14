@@ -10,3 +10,4 @@ Contents:
 - [Consuming data from network devices](notes/consuming-data.md)
 - [Using NAPALM to gather information from network devices](notes/devnet-napalm.md)
 - [Making a chatbot to get information from your network devices](notes/network-bot-using-telegram.md)
+- [Basics of Ansible, and automating a simple compliance check](notes/ansible-hostname-compliance.md)
