@@ -32,7 +32,7 @@ By default, Ansible ships with a configuration file called `ansible.cfg`, locate
 
 In the project directory, create an `ansible.cfg` file, which by default expects an [INI format](https://en.wikipedia.org/wiki/INI_file) of configuration options. For our example this should be fine:
 
-```
+```ini
 [defaults]
 
 inventory            = ./inventory/
@@ -54,7 +54,7 @@ In the inventory folder, I created an inventory file called `inv.yml`. In this Y
 
 As my topology has devices with 2 platforms (Cisco IOS and Cisco NX-OS), my hosts are partitioned into 2 groups. Within these groups I can specify my hosts and specify the host specific IP address that Ansible can reach the host at. So my inventory file `inv.yml` looks like this:
 
-```
+```yaml
 ios:
   hosts:
     bng-dist-rtr01:
@@ -82,7 +82,7 @@ As we can see, there are 2 groups: `ios` and `nxos`. These 2 groups have differe
 
 In the `inventory/` folder of the project, create a `group_vars/` folder. Inside this folder, create 2 files to represent the 2 groups created- `ios.yml` and `nxos.yml`. In the `ios.yml` file, the `ansible_network_os` variable can be set and controlled
 
-```
+```yaml
 ansible_network_os: ios
 ```
 
@@ -90,7 +90,7 @@ and `nxos.yml` can have the same set as `ansible_network_os: nxos`.
 
 To handle the SSH user and password that will be used by Ansible to connect to your devices, Ansible variables named `ansible_user` and `ansible_password` can be set either under the group vars files (if the credentials are platform specific), but if your credentials are globally the same, then probably keeping them in a file inside a folder named `all/`, that resides in the `inventory/group_vars/` folder created would be a good idea. Name that file `main.yml` for simplicity, and it sets the following variables:
 
-```
+```yaml
 ansible_user: "{{ lookup('env', 'NETWORK_USER') }}"
 ansible_password: "{{ lookup('env', 'NETWORK_PASSWORD') }}"
 ansible_become_password: "{{ lookup('env', 'NETWORK_PASSWORD') }}"
@@ -98,7 +98,7 @@ ansible_become_password: "{{ lookup('env', 'NETWORK_PASSWORD') }}"
 
 A `lookup` plugin in Ansible is used to access data from outside sources. This comes in handy when dealing with sensitive data that is specific to yourself and not needed by other contributors or users of the project. Here, `lookup` is used to check the `env` variables (environment variables) in your shell environment. Make sure your SSH username and password is set on the shell you will be running Ansible from
 
-```
+```bash
 export NETWORK_USER=<username>
 export NETWORK_PASSWORD=<password>
 ```
@@ -121,7 +121,7 @@ In most cases, the playbook needs to know which hosts to run the play against, a
 
 To denote the start of a YAML file, the beginning of the file needs to include 3 dashed lines `---`. So by now, the playbook looks like this:
 
-```
+```yaml
 ---
 
 - name: CHECK HOSTNAME COMPLIANCE OF ALL DEVICES
@@ -132,7 +132,7 @@ To denote the start of a YAML file, the beginning of the file needs to include 3
 
 Within this play, we can now define the tasks to be executed. To get the hostname that is configured on the device, we can use the modules [`ios_facts`](https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_facts_module.html) and [`nxos_facts`](https://docs.ansible.com/ansible/latest/collections/cisco/nxos/nxos_facts_module.html), provided to us as part of the IOS and NXOS Ansible collections, which are maintained on GitHub. These ship with Ansible itself, so we do not need to install anything extra- except for the requirements of these modules, and a package used when Ansible connects to devices using a username specific password instead of an SSH public key authentication login. Run the following commands to install those requirements:
 
-```
+```bash
 pip install paramiko scp ansible-pylibssh
 sudo apt-get install sshpass
 ```
@@ -141,7 +141,7 @@ Now our playbook should be straightforward, as it is a very simple check. The pl
 
 The playbook will be as below:
 
-```
+```yaml
 ---
 
 - name: CHECK HOSTNAME COMPLIANCE OF IOS DEVICES
@@ -180,7 +180,7 @@ Here `inventory_hostname` is a variable (double parantheses is used as a Jinja t
 
 Upon execution, I get a result as such:
 
-```
+```bash
 (venv) user@COMPUTER:~$ ansible-playbook playbooks/check_hostname_compliance.yml
 
 PLAY [CHECK HOSTNAME COMPLIANCE OF IOS DEVICES] *********************************************************************************************************************************
