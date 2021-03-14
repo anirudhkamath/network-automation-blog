@@ -11,6 +11,7 @@ Oh, and please do feel free to open pull requests on my GitHub repository in cas
 - ### [Consuming data from network devices](notes/consuming-data.md)
 - ### [Using NAPALM to gather information from network devices](notes/devnet-napalm.md)
 - ### [Making a chatbot to get information from your network devices](notes/network-bot-using-telegram.md)
-- ### [Basics of Ansible, and automating a simple compliance check](notes/ansible-hostname-compliance.md)
+- ### [Basics of Ansible](notes/ansible-hostname-compliance.md)
 - ### [About TextFSM and how can it be used](notes/textfsm.md)
 - ### [Using the genie parser](notes/genie-parsing.md)
+- ### [Using Ansible for compliance reports](notes/compliance-checks-with-ansible.md)
