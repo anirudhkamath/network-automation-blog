@@ -5,11 +5,11 @@ Hello, my name is Anirudh Kamath. I am a Network Automation engineer, who enjoys
 I am attempting to maintain a collection of posts on technologies used in the area of network automation and programmability.
 Oh, and please do feel free to open pull requests on my GitHub repository in case you want to contribute as well. I am excited to learn together with you!
 
-
 ### General
 
 - [Basics of Git](notes/git.md)
 - [Automated fetching of Git refs](notes/automated-refs-update.md)
+- [Managing projects with Poetry](notes/poetry-package-manager.md)
 
 ### Interfacing with network devices
 
@@ -23,5 +23,6 @@ Oh, and please do feel free to open pull requests on my GitHub repository in cas
 - [Using Ansible for compliance reports](notes/compliance-checks-with-ansible.md)
 
 ### Parsing
+
 - [About TextFSM and how can it be used](notes/textfsm.md)
 - [Using the genie parser](notes/genie-parsing.md)
