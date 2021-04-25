@@ -131,7 +131,7 @@ Here are snippets of the steps I wrote for my bot actions. Note that here `updat
 
             else:
                 update.message.reply_text('Here are facts about your device interfaces:\n\n')
-                
+
                 for d in device_interfaces:
                     if device_interfaces[d]['is_up'] and device_interfaces[d]['is_enabled']:
                         update.message.reply_text(

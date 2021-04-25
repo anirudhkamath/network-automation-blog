@@ -174,6 +174,7 @@ The playbook will be as below:
         msg: " { {inventory_hostname } } is configured with a non-compliant hostname: { {facts.ansible_facts.ansible_net_hostname } }"
         when: facts.ansible_facts.ansible_net_hostname != inventory_hostname
 ```
+
 > (Please remove the spaces in between the curly brace characters, GitHub pages does not display it properly. Follow [Jinja2 variable syntax](https://ttl255.com/jinja2-tutorial-part-1-introduction-and-variable-substitution/))
 
 Here `inventory_hostname` is a variable (double parantheses is used as a Jinja template construct to denote the use of a variable in a string) whose value is the name of the host as seen by the inventory.
@@ -210,13 +211,13 @@ fatal: [del-dist-sw01]: FAILED! => {"changed": false, "msg": "del-dist-sw01 is c
 fatal: [del-dist-sw02]: FAILED! => {"changed": false, "msg": "del-dist-sw02 is configured with a non-compliant hostname: dist-sw02"}
 
 PLAY RECAP **********************************************************************************************************************************************************************
-bng-acc-sw01               : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
-bng-dist-rtr01             : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
-bng-dist-rtr02             : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
-del-dist-rtr01             : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
-del-dist-rtr02             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
-del-dist-sw01              : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
-del-dist-sw02              : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+bng-acc-sw01               : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+bng-dist-rtr01             : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+bng-dist-rtr02             : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+del-dist-rtr01             : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+del-dist-rtr02             : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+del-dist-sw01              : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+del-dist-sw02              : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
 
 (venv) user@COMPUTER:~$
 ```

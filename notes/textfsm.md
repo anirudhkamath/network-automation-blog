@@ -52,7 +52,7 @@ This is a pretty loaded sentence, so let us break it down a bit.
 
 - Semi-formatted text: The example output given above is semi-formatted text- it has an informal format in how it is structured that we can notice, but it not formatted in a way where a computer program can interpret the semantic format. It is not like [JSON](https://www.json.org/json-en.html), [YAML](https://yaml.org/), or [XML](https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction), where the semantics of how the data is structured is already understood, or is described with the text.
 
-Great, so putting this together, we can deduce that TextFSM is a tool that allows you to write templates to describe the data to be parsed, gives developers the flexibility to define the different states the template can parse in, and works on semi-formatted data that have an apparent textual format in which they are represented. 
+Great, so putting this together, we can deduce that TextFSM is a tool that allows you to write templates to describe the data to be parsed, gives developers the flexibility to define the different states the template can parse in, and works on semi-formatted data that have an apparent textual format in which they are represented.
 
 TextFSM uses [RegEx](https://docs.python.org/3/howto/regex.html) to parse data.
 
@@ -92,7 +92,7 @@ stateName
   ^rule
 ```
 
-There are 3 reserved states: 
+There are 3 reserved states:
 
 - `Start`: This state is required to be defined in the template, else the template will not work.
 - `End`: State to complete processing of incoming strings, tells TextFSM to stop here instead of going till the end of the text input file.
@@ -271,8 +271,8 @@ And you get back a list of dictionaries like this:
     "ROUTER_ID": "192.168.239.66",
     "PROCESS_ID": "300",
     "AREA": "0.0.0.0",
-    "LINK_ID": "172.16.21.6", 
-    "ADV_ROUTER": "172.16.21.6", 
+    "LINK_ID": "172.16.21.6",
+    "ADV_ROUTER": "172.16.21.6",
     "AGE": "1731",
     "LINK_COUNT": "8",
     "TAG": "",
@@ -281,8 +281,8 @@ And you get back a list of dictionaries like this:
     "ROUTER_ID": "192.168.239.66",
     "PROCESS_ID": "300",
     "AREA": "0.0.0.0",
-    "LINK_ID": "172.16.21.5", 
-    "ADV_ROUTER": "172.16.21.5", 
+    "LINK_ID": "172.16.21.5",
+    "ADV_ROUTER": "172.16.21.5",
     "AGE": "1112",
     "LINK_COUNT": "5",
     "TAG": "",

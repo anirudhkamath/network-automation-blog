@@ -31,7 +31,7 @@ other third parties and are used and distributed under license.
 Some parts of this software are covered under the GNU Public
 License. A copy of the license is available at
 http://www.gnu.org/licenses/gpl.html.
- 
+
 Software
 BIOS: version 1.3.0
 loader: version N/A
@@ -43,22 +43,22 @@ kickstart image file is: bootflash:/sanity-kickstart
 kickstart compile time: 12/6/2010 7:00:00 [12/06/2010 07:35:14]
 system image file is: bootflash:/sanity-system
 system compile time: 12/6/2010 7:00:00 [12/06/2010 08:56:45]
- 
+
 Hardware
 cisco Nexus5010 Chassis ("20x10GE/Supervisor")
 Intel(R) Celeron(R) M CPU with 2073416 kB of memory.
 Processor Board ID JAF1228BTAS
- 
+
 Device name: TEST
 bootflash: 1003520 kB
- 
+
 Kernel uptime is 0 day(s), 3 hour(s), 30 minute(s), 45 second(s)
- 
+
 Last reset
 Reason: Unknown
 System version:
 Service:
- 
+
 plugin
 Core Plugin, Ethernet Plugin, Fc Plugin
 switch#
@@ -179,7 +179,7 @@ Open the Python shell (ensure you have Python 3, I would recommend using [pyenv]
 
 ```
 (.venv) user@COMPUTER:~$ python
-Python 3.7.9 (default, Jan  3 2021, 14:00:24) 
+Python 3.7.9 (default, Jan  3 2021, 14:00:24)
 [GCC 9.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> file_obj = open("show-fex", "r")
@@ -243,7 +243,7 @@ From this list of dicts structure, we can see that every dictionary entry in the
 >>> outList = []
 >>> for x in show_fex_parsed:
 ...     outList.append(x['number'])
-... 
+...
 >>> outList
 ['100', '101', '102', '105']
 ```

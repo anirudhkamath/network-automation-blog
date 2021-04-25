@@ -82,7 +82,7 @@ So all that is left is to loop over the lines in the output data and parse using
 # Parser for 'show inventory'
 # ================================
 class ShowInventory(ShowInventorySchema):
-    
+
     cli_command = 'show inventory'
 
     def cli(self, output=None):
@@ -176,9 +176,9 @@ PyATS works well with something called a testbed. This testbed is a YAML file th
         default:
             password: <password>
             username: <username>
-        enable: 
+        enable:
             password: <password>
-        os: iosxe 
+        os: iosxe
         type: iosxe
     ```
 

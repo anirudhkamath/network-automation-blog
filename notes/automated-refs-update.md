@@ -45,17 +45,17 @@ Now to get to the tasks:
 
 ```yaml
   tasks:
-  
+
   - name: LIST ALL DIRECTORIES IN ROOT WITH INDICATOR
-    shell: 
+    shell:
       cmd: "ls -d */"
       chdir: "{ { root_directory } }"
     register: dirs
-  
+
   - name: LOOP THROUGH LIST OF ITEMS IN ROOT DIRECTORY
     include_tasks: find-git-repos.yml
     loop: "{ { dirs.stdout_lines } }"
-  
+
   - name: GIT FETCH FOR REMOTES
     command:
       chdir: "{ { root_directory ~ item } }"
