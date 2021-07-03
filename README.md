@@ -26,3 +26,7 @@ Oh, and please do feel free to open pull requests on my GitHub repository in cas
 
 - [About TextFSM and how can it be used](notes/textfsm.md)
 - [Using the genie parser](notes/genie-parsing.md)
+
+### Network monitoring/telemetry
+
+- [Network telemetry using NETCONF, Telegraf, and Prometheus](notes/network-telemetry-using-netconf-telegraf-prometheus.md)
