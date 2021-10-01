@@ -10,6 +10,7 @@ Oh, and please do feel free to open pull requests on my GitHub repository in cas
 - [Basics of Git](notes/git.md)
 - [Automated fetching of Git refs](notes/automated-refs-update.md)
 - [Managing projects with Poetry](notes/poetry-package-manager.md)
+- [Maintaining data for network automation](notes/maintaining-data-for-network-automation.md)
 
 ### Interfacing with network devices
 
