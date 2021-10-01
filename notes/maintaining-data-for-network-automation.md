@@ -1,4 +1,4 @@
-# Maintaining data for network automation
+# Maintaining data for automation
 
 When I hear the term "Infrastructure as Code" I am reminded of the times where most people talk about representing computer infrastructure in YAML or JSON data. While that is one piece of the whole story, software is capable of much more in today's world of web applications. This is where the topic of data maintainance in infra as code gets super interesting, and where we notice that *automating networks/infrastructure is not only about the technology, but also hugely about the data it uses to automate*.
 
@@ -25,13 +25,13 @@ While keeping data about real infrastructure in the network is fairly straightfo
 
 [Nautobot](https://nautobot.readthedocs.io/en/stable/) is one such SoT application, and say there are some devices in Nautobot
 
-![Devices in Nautobot](images/maintaining-data-for-network-automation/nautobot-demo-devices.png)
+![Devices in Nautobot](images/maintaining-data-for-automation/nautobot-demo-devices.png)
 
 If you notice, these devices have a `Role` assigned to them such as `edge`, `leaf`, etc. This is a good example of metadata for a device, as it does not represent physical objects, but rather the function of the device in the network.
 
 For leaf devices in the network, there is a specific role
 
-![Leaf device role](images/maintaining-data-for-network-automation/nautobot-demo-device-role-leaf.png)
+![Leaf device role](images/maintaining-data-for-automation/nautobot-demo-device-role-leaf.png)
 
 Based on this data, say there is an Ansible project that uses this Nautobot instance as an inventory. So there may be some Ansible inventory groups created to represent multiple hosts playbooks can run against- for example, let's say there is an Ansible group named `device_role__leaf` to represent all devices that have a device role of leaf.
 
