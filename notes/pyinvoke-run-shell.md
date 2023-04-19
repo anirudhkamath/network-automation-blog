@@ -306,11 +306,11 @@ You can find the code I described above [here](https://github.com/anirudhkamath/
 
 Some helpful places to understand more about invoke:
 
-- FAQs: https://www.pyinvoke.org/faq.html
-- \[advanced\] configuring invoke: https://docs.pyinvoke.org/en/stable/concepts/configuration.html
-- about tasks: https://docs.pyinvoke.org/en/stable/concepts/invoking-tasks.html
-- \[advanced\] building CLI programs with invoke as a Python library: https://docs.pyinvoke.org/en/stable/concepts/library.html
-- understanding the context arg for tasks: https://docs.pyinvoke.org/en/stable/getting-started.html#why-context
-- Get started https://docs.pyinvoke.org/en/stable/getting-started.html
+- [Invoke FAQs](https://www.pyinvoke.org/faq.html)
+- \[advanced\] [configuring invoke](https://docs.pyinvoke.org/en/stable/concepts/configuration.html)
+- [about tasks](https://docs.pyinvoke.org/en/stable/concepts/invoking-tasks.html)
+- \[advanced\] [building CLI programs with invoke as a Python library](https://docs.pyinvoke.org/en/stable/concepts/library.html)
+- [understanding the context arg for tasks](https://docs.pyinvoke.org/en/stable/getting-started.html#why-context)
+- [Get started](https://docs.pyinvoke.org/en/stable/getting-started.html)
 
   
