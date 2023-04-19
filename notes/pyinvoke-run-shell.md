@@ -267,6 +267,12 @@ Once these are sufficiently defined, a user who did not develop the functionalit
 invoke bgp-sessions -r north_america -s nyc
 ```
 
+or
+
+```bash
+invoke bgp-sessions --region north_america --site nyc
+```
+
 To run the invoke task to analyze the BGP sessions configured for the network in site `nyc` within region `north_america` in the directory structure. The result will appear as such:
 
 ```bash
