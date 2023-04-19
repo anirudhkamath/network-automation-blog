@@ -1,17 +1,19 @@
 # Using PyInvoke to run shell tasks
 
-One of the advantages of developing software applications using Python is that there is a library or tool for doing nearly everything in the development process. In my experience, the process of building a software application goes something like this:
+As network automation engineers we develop multiple software tools and applications that require building documentation, unit tests, build artifacts (think Python wheels, or docker compose configurations), and more. Being able to update or use such functions repeatedly for every patch or feature update to our applications is required to ensure our applications are tested, shipped with required documemtation updates, etc.
 
-1. Programming the core entrypoint functions of the app (your `def main()`, or main Python executable)
-2. Developing base classes, auxiliary classes and their member methods and properties (if you subscribe to the object oriented programming way of thinking) OR helper functions if your application is more functional than object oriented
-3. Weaving together those methods and classes developed into logical library directories/files that can be imported into your main executable, or each other
-4. Defining your project's [packaging configuration](https://packaging.python.org/en/latest/flow/#the-configuration-file) if you intend to distribute your application package on PyPI (Python packaging index) or your own packaging index
-5. Building tests
-6. Developing API endpoints, proto defintions, etc.
-7. Developing build artifacts (containerization of the application, or manifests for a Kubernetes deployment)
-8. ...
+One of the advantages of developing software applications using Python is that there is a library or tool for doing nearly everything in the development process. For example, building unit tests can be done with `pytest`, documentation can be generated using `mkdocs` or `sphinx` -- but maybe not everyone in the team knows how to use these tools and use the right commands or flags to do what they want (run tests, run the application as a docker container or kubernetes deployment, ...).
 
-To complete all these steps, developers must use multiple tools (think Django/Flask, Python-poetry/pip(x)/setuptools, pytest, docker, kubectl, ...) in their arsenal. It may be that many of the command line commands used to generate required artifacts and results may be long, multi-line commands with multiple flags, piped, multi stage, etc. For a new developer joining the team, being able to replicate these commands and steps can be quite annoying.
+<!-- 1. Programming the core entrypoint functions of the app (your `def main()`, or main Python executable)
+1. Developing base classes, auxiliary classes and their member methods and properties (if you subscribe to the object oriented programming way of thinking) OR helper functions if your application is more functional than object oriented
+2. Weaving together those methods and classes developed into logical library directories/files that can be imported into your main executable, or each other
+3. Defining your project's [packaging configuration](https://packaging.python.org/en/latest/flow/#the-configuration-file) if you intend to distribute your application package on PyPI (Python packaging index) or your own packaging index
+4. Building tests
+5. Developing API endpoints, proto defintions, etc.
+6. Developing build artifacts (containerization of the application, or manifests for a Kubernetes deployment)
+7. ... -->
+
+<!-- To complete all these steps, developers must use multiple tools (think Django/Flask, Python-poetry/pip(x)/setuptools, pytest, docker, kubectl, ...) in their arsenal. It may be that many of the command line commands used to generate required artifacts and results may be long, multi-line commands with multiple flags, piped, multi stage, etc. For a new developer joining the team, being able to replicate these commands and steps can be quite annoying. -->
 This where tools such as `make` and `pyinvoke` come in handy as it allows developers to provide "aliases" for such commands or workflows.
 
 ## About PyInvoke
