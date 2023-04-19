@@ -41,6 +41,8 @@ def task_xyz(ctx, a, b):
     """
 ```
 
+> [Dashes v/s underscores for invoke tasks](https://docs.pyinvoke.org/en/stable/concepts/namespaces.html#dashes-vs-underscores)
+
 This `task()` wrapper allows the programmer to provide the following helpful properties for the command task (there are more options but I think these are used more frequently):
 
 - `help`: `dict` holding informational descriptions for each flag the task exposes
