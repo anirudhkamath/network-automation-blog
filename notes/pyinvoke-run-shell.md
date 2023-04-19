@@ -170,8 +170,6 @@ def bgp_sessions(ctx, region="", site=""):
     if not site or not region:
         sys.exit("Site/region not given -- do not know which site to analyze BGP sessions for, exiting!")
 
-    # ctx.run("mkdir -p /tmp/batfish/snapshots")  # create snapshots directory
-
     bf = Session(host="localhost", ssl=False, verify_ssl_certs=False)
     bf.set_network(f"{site}")
 
@@ -260,6 +258,20 @@ A run down of what is going on here:
   ```
 
 - finally the Batfish analyzed result is printed to the console and the user sees what Batfish inferred from the network configurations in the site within the region specified by the user
+
+The user can run `invoke -l` to get a list of tasks they can run in the project.
+
+```bash
+> invoke -l
+Available tasks:
+
+  bgp-sessions   Analyze BGP sessions for a site using Batfish.
+  docker-build   Docker build task.
+  docker-run
+  docker-stop
+```
+
+> Notice how invoke picks up the description from the task's docstring
 
 Once these are sufficiently defined, a user who did not develop the functionalities mentioned above can simply install the `invoke` tool as mentioned in the beginning of this article, and run
 
